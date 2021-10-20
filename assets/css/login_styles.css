@@ -1,0 +1,61 @@
+body {
+	background: url(../img/cover.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+.main-section {
+	margin: 0 auto;
+	margin-top: 25%;
+	padding: 0;
+}
+.modal-content {
+	background-color: #082749;
+	opacity: 0.95;
+	padding: 0 20 px;
+	box-shadow: 0px 0px 5px #707397;
+}
+.user-img {
+	margin-top: -50px;
+	margin-bottom: 35px;
+}
+
+.user-img img {
+	width: 100px;
+	height: 100px;
+	box-shadow: 0px 0px 5px #707397;
+	border-radius: 50%;
+}
+.user-img h3 {
+	color: white;
+	padding-top: 20px;
+}
+
+.form-group input {
+	height: 42px;
+	font-size: 18px;
+	border: 0;
+	padding-left: 54px;
+	border-radius: 5px;
+}
+
+.form-group::before {
+	font-family: "Font Awesome\ 5 Free";
+	position: absolute;
+	left: 28px;
+	font-size: 22px;
+	padding-top: 4px;
+}
+
+.form-group#user-group::before {
+	content: "\f007";
+	color: rgb(156, 156, 160);
+}
+.form-group#password-group::before {
+	content: "\f023";
+	color: rgb(156, 156, 160);
+}
+button {
+	width: 100%;
+	margin: 5px 0 25px;
+	font-size: 18px;
+}
