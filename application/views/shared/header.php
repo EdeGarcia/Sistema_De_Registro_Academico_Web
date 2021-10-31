@@ -68,7 +68,7 @@
                 Grados y secciones
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de grados</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('GradosController')?>">Gestión de grados</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de secciones</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de maestro por seccion</a></li>
               </ul>
@@ -102,7 +102,7 @@
                 Grados y secciones
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de grados</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('GradosController')?>">Gestión de grados</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de secciones</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de maestro por seccion</a></li>
               </ul>

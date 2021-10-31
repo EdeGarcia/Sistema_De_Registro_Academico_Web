@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 mt-5">
-            <h1 class="text-center">Materias</h1>
+            <h1 class="text-center">Grados</h1>
             <hr style="background-color: black; color: black; height: 1px;">
         </div>
     </div>
@@ -19,7 +19,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
 
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Materia</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Grado</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -28,13 +28,8 @@
                         <div class="modal-body">
                             <form action="#" method="post" id="form_add">
                                 <div class="form-group">
-                                    <label for="">Nombre</label>
-                                    <input type="text" name="ins_nombre" class="form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="">Descripción</label>
-                                    <textarea name="ins_descripcion" cols="20" rows="10" class="form-control"></textarea>
+                                    <label for="">Grado</label>
+                                    <input type="text" name="ins_descripcion" class="form-control">
                                 </div>
                             </form>
                         </div>
@@ -54,7 +49,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
 
-                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Materia</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Grado</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -64,13 +59,8 @@
                             <form action="#" method="post" id="form_add">
                                 <input type="hidden" name="edit_id">
                                 <div class="form-group">
-                                    <label for="">Nombre</label>
-                                    <input type="text" name="edit_nombre" class="form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="">Descripción</label>
-                                    <textarea name="edit_descripcion" cols="20" rows="10" class="form-control"></textarea>
+                                    <label for="">Grado</label>
+                                    <input type="text" name="edit_descripcion" class="form-control">
                                 </div>
                             </form>
                         </div>
@@ -93,8 +83,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Materia</th>
-                        <th colspan="3">Descripcion</th>
+                        <th colspan="3">Grado</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -111,15 +100,13 @@
     $(document).on("click", "#add", function(e) {
         e.preventDefault();
 
-        var ins_nombre = $("[name=ins_nombre]").val();
         var ins_descripcion = $("[name=ins_descripcion]").val();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>agregarMateria",
+            url: "<?php echo base_url(); ?>agregarGrado",
             type: "post",
             dataType: "json",
             data: {
-                ins_nombre: ins_nombre,
                 ins_descripcion: ins_descripcion,
             },
             success: function(data) {
@@ -163,19 +150,18 @@
 
     function fetch() {
         $.ajax({
-            url: "<?php echo base_url(); ?>cargarMaterias",
+            url: "<?php echo base_url(); ?>cargarGrados",
             type: "get",
             dataType: "json",
             success: function(data) {
                 var tbody = "";
                 for (var key in data) {
                     tbody += "<tr>";
-                    tbody += "<td>" + data[key]["IDMateria"] + "</td>";
-                    tbody += "<td>" + data[key]["Nombre"] + "</td>";
+                    tbody += "<td>" + data[key]["IDGrado"] + "</td>";
                     tbody += "<td colspan='3'>" + data[key]["Descripcion"] + "</td>";
                     tbody += `<td colspan='2'>
-                                    <a href="#" id="del" value="${data[key]["IDMateria"]}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
-                                    <a href="#" id="edit" value="${data[key]["IDMateria"]}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
+                                    <a href="#" id="del" value="${data[key]["IDGrado"]}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="#" id="edit" value="${data[key]["IDGrado"]}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
                                 </td>`;
                     tbody += "<tr>";
                 }
@@ -216,7 +202,7 @@
                 .then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: "<?php echo base_url(); ?>eliminarMateria",
+                            url: "<?php echo base_url(); ?>eliminarGrado",
                             type: "post",
                             dataType: "json",
                             data: {
@@ -253,7 +239,7 @@
             alert("ID requerido para editar");
         } else {
             $.ajax({
-                url: "<?php echo base_url(); ?>editarMateria",
+                url: "<?php echo base_url(); ?>editarGrado",
                 type: "post",
                 dataType: "json",
                 data: {
@@ -262,8 +248,7 @@
                 success: function(data) {
                     if (data.response === "success") {
                         $("#modal_edit").modal("show");
-                        $("[name=edit_id]").val(data.post.IDMateria);
-                        $("[name=edit_nombre]").val(data.post.Nombre);
+                        $("[name=edit_id]").val(data.post.IDGrado);
                         $("[name=edit_descripcion]").val(data.post.Descripcion);
                     } else {
                         Command: toastr["error"](data.message);
@@ -295,16 +280,14 @@
         e.preventDefault();
 
         var edit_id = $("[name=edit_id]").val();
-        var edit_nombre = $("[name=edit_nombre]").val();
         var edit_descripcion = $("[name=edit_descripcion]").val();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>actualizarMateria",
+            url: "<?php echo base_url(); ?>actualizarGrado",
             type: "post",
             dataType: "json",
             data: {
                 edit_id: edit_id,
-                edit_nombre: edit_nombre,
                 edit_descripcion: edit_descripcion,
             },
             success: function(data) {
@@ -319,7 +302,7 @@
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    
+
                     $("#form_edit")[0].reset();
 
                 } else {

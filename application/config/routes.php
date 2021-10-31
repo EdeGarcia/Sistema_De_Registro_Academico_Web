@@ -65,3 +65,9 @@ $route['cargarMaterias'] = 'MateriasController/fetch';
 $route['editarMateria'] = 'MateriasController/edit';
 $route['actualizarMateria'] = 'MateriasController/update';
 $route['eliminarMateria'] = 'MateriasController/delete';
+//Grados
+$route['agregarGrado'] = 'GradosController/insert';
+$route['cargarGrados'] = 'GradosController/fetch';
+$route['editarGrado'] = 'GradosController/edit';
+$route['actualizarGrado'] = 'GradosController/update';
+$route['eliminarGrado'] = 'GradosController/delete';
