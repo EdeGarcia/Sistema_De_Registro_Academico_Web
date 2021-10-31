@@ -18,8 +18,10 @@ class PageController extends CI_Controller
     function index()
     {
         //Director
+        $data = array('titulo' => 'Inicio - Director');
+
         if ($this->session->userdata('rol') == 'Director') {
-            $this->load->view('shared/header');
+            $this->load->view('shared/header', $data);
             $this->load->view('home');
             $this->load->view('shared/footer');
         } else {
@@ -53,9 +55,10 @@ class PageController extends CI_Controller
 
     function maestro()
     {
+        $data = array('titulo' => 'Inicio Maestro' );
         //Maestro
         if ($this->session->userdata('rol') == 'Maestro') {
-            $this->load->view('shared/header');
+            $this->load->view('shared/header', $data);
             $this->load->view('home');
             $this->load->view('shared/footer');
         } else {
