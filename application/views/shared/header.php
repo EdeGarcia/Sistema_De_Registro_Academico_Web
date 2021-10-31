@@ -56,7 +56,7 @@
                 General
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de empleados</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EmpleadosController')?>">Gestión de empleados</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de usuarios</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de maestros</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de periodos</a></li>
@@ -113,7 +113,7 @@
                 Materias
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de materias</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('MateriasController')?>">Gestión de materias</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de materias por grado</a></li>
               </ul>
             </li>

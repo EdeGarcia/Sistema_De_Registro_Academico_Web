@@ -59,3 +59,9 @@ $route['cargarEmpleados'] = 'EmpleadosController/fetch';
 $route['editarEmpleado'] = 'EmpleadosController/edit';
 $route['actualizarEmpleado'] = 'EmpleadosController/update';
 $route['eliminarEmpleado'] = 'EmpleadosController/delete';
+// Materias
+$route['agregarMateria'] = 'MateriasController/insert';
+$route['cargarMaterias'] = 'MateriasController/fetch';
+$route['editarMateria'] = 'MateriasController/edit';
+$route['actualizarMateria'] = 'MateriasController/update';
+$route['eliminarMateria'] = 'MateriasController/delete';

@@ -213,7 +213,7 @@
   </div>
   <div class="row">
     <div class="col-md-12 mt-3">
-      <table class="table table-hover">
+      <table class="table table-hover table-responsive-md">
         <thead>
           <tr>
             <th>ID</th>
@@ -268,24 +268,15 @@
           fetch();
           $("#modal_add").modal("hide");
           $("#form_add")[0].reset();
-          Command: toastr["success"](data.message);
-          toastr.options = {
-            closeButton: false,
-            debug: false,
-            newestOnTop: false,
-            progressBar: true,
-            positionClass: "toast-bottom-right",
-            preventDuplicates: true,
-            onclick: null,
-            showDuration: "300",
-            hideDuration: "1000",
-            timeOut: "5000",
-            extendedTimeOut: "1000",
-            showEasing: "swing",
-            hideEasing: "linear",
-            showMethod: "fadeIn",
-            hideMethod: "fadeOut",
-          };
+
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: '¡Registro agregado con exito!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+
         } else {
           Command: toastr["error"](data.message);
 
@@ -485,25 +476,15 @@
         fetch();
         if (data.response === "success") {
           $("#modal_edit").modal("hide");
-          Command: toastr["success"](data.message);
 
-          toastr.options = {
-            closeButton: false,
-            debug: false,
-            newestOnTop: false,
-            progressBar: false,
-            positionClass: "toast-top-right",
-            preventDuplicates: false,
-            onclick: null,
-            showDuration: "300",
-            hideDuration: "1000",
-            timeOut: "5000",
-            extendedTimeOut: "1000",
-            showEasing: "swing",
-            hideEasing: "linear",
-            showMethod: "fadeIn",
-            hideMethod: "fadeOut",
-          };
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
+          
         } else {
           Command: toastr["error"](data.message);
 
