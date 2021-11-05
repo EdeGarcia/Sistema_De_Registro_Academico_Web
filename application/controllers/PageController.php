@@ -22,7 +22,7 @@ class PageController extends CI_Controller
 
         if ($this->session->userdata('rol') == 'Director') {
             $this->load->view('shared/header', $data);
-            $this->load->view('home');
+            $this->load->view('HomeDirector');
             $this->load->view('shared/footer');
         } else {
             echo "¡Acceso denegado!";
@@ -34,7 +34,7 @@ class PageController extends CI_Controller
         //Sub-Director
         if ($this->session->userdata('rol') == 'Sub-Director') {
             $this->load->view('shared/header');
-            $this->load->view('home');
+            $this->load->view('HomeSubDirector');
             $this->load->view('shared/footer');
         } else {
             echo "¡Acceso denegado!";
@@ -46,7 +46,7 @@ class PageController extends CI_Controller
         //Secretaria
         if ($this->session->userdata('rol') == 'Secretaria') {
             $this->load->view('shared/header');
-            $this->load->view('home');
+            $this->load->view('HomeSecretaria');
             $this->load->view('shared/footer');
         } else {
             echo "¡Acceso denegado!";
@@ -59,7 +59,7 @@ class PageController extends CI_Controller
         //Maestro
         if ($this->session->userdata('rol') == 'Maestro') {
             $this->load->view('shared/header', $data);
-            $this->load->view('home');
+            $this->load->view('HomeMaestro');
             $this->load->view('shared/footer');
         } else {
             echo "¡Acceso denegado!";

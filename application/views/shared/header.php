@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcout icon" href="<?php echo base_url(); ?>assets/img/logo_sistema.png">
+
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
@@ -37,7 +39,7 @@
     <div class="container-fluid">
       <!-- Logo del sistema -->
       <a class="navbar-brand" href="#">
-        <img src="<?php echo base_url(); ?>assets/img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="<?php echo base_url(); ?>assets/img/logo_sistema.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Sistema Academico
       </a>
 

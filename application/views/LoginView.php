@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcout icon" href="<?php echo base_url(); ?>assets/img/logo_sistema.png">
     <title>Inicio de sesión</title>
 
     <!--JQuery-->
