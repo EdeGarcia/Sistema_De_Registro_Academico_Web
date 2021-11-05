@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <h1 class="text-center">Empleados</h1>
+      <h1 class="text-center"><i class="fa fa-users mr-3"></i>Empleados</h1>
       <hr style="background-color: black; color: black; height: 1px;">
     </div>
   </div>
