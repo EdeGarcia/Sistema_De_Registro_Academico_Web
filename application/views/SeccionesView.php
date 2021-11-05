@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 mt-5">
-            <h1 class="text-center">Grados</h1>
+            <h1 class="text-center">Secciones</h1>
             <hr style="background-color: black; color: black; height: 1px;">
         </div>
     </div>
@@ -19,7 +19,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
 
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Grado</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Sección</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -27,9 +27,39 @@
                         </div>
                         <div class="modal-body">
                             <form action="#" method="post" id="form_add">
+                                <!-- Descripcion -->
+                                <div class="form-group">
+                                    <label for="">Sección</label>
+                                    <input type="text" name="ins_descripcion" class="form-control">
+                                </div>
+                                <!-- Turno -->
+                                <div class="form-group">
+                                    <label for="">Turno</label>
+                                    <select name="ins_turno" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Matutino">Matutino</option>
+                                        <option value="Vespertino">Vespertino</option>
+                                    </select>
+                                </div>
+                                <!-- Aula -->
+                                <div class="form-group">
+                                    <label for="">Aula</label>
+                                    <input type="text" name="ins_aula" class="form-control">
+                                </div>
+                                <!-- Cupo -->
+                                <div class="form-group">
+                                    <label for="">Cupo</label>
+                                    <input type="text" name="ins_cupo" class="form-control">
+                                </div>
+                                <!-- IDGrado -->
                                 <div class="form-group">
                                     <label for="">Grado</label>
-                                    <input type="text" name="ins_descripcion" class="form-control">
+                                    <select name="ins_grado" class="form-control">
+                                        <option value=""></option>
+                                        <?php foreach ($grados as $grado) { ?>
+                                            <option value="<?= $grado->IDGrado ?>"><?= $grado->Descripcion ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </form>
                         </div>
@@ -43,24 +73,54 @@
                 </div>
             </div>
 
-            <!-- Modal para editar -->
+
             <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
 
-                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Grado</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Sección</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
 
                         </div>
                         <div class="modal-body">
-                            <form action="#" method="post" id="form_add">
+                            <form action="#" method="post" id="form_edit">
                                 <input type="hidden" name="edit_id">
+                                <!-- Descripcion -->
+                                <div class="form-group">
+                                    <label for="">Sección</label>
+                                    <input type="text" name="edit_descripcion" class="form-control">
+                                </div>
+                                <!-- Turno -->
+                                <div class="form-group">
+                                    <label for="">Turno</label>
+                                    <select name="edit_turno" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Matutino">Matutino</option>
+                                        <option value="Vespertino">Vespertino</option>
+                                    </select>
+                                </div>
+                                <!-- Aula -->
+                                <div class="form-group">
+                                    <label for="">Aula</label>
+                                    <input type="text" name="edit_aula" class="form-control">
+                                </div>
+                                <!-- Cupo -->
+                                <div class="form-group">
+                                    <label for="">Cupo</label>
+                                    <input type="text" name="edit_cupo" class="form-control">
+                                </div>
+                                <!-- IDGrado -->
                                 <div class="form-group">
                                     <label for="">Grado</label>
-                                    <input type="text" name="edit_descripcion" class="form-control">
+                                    <select name="edit_grado" class="form-control">
+                                        <option value=""></option>
+                                        <?php foreach ($grados as $grado) { ?>
+                                            <option value="<?= $grado->IDGrado ?>"><?= $grado->Descripcion ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </form>
                         </div>
@@ -82,9 +142,14 @@
             <table class="table table-hover table-responsive-md">
                 <thead>
                     <tr>
-                        <th colspan="2">ID</th>
-                        <th colspan="3">Grado</th>
-                        <th colspan="2">Acciones</th>
+                        <th>ID</th>
+                        <th>Secion</th>
+                        <th>Turno</th>
+                        <th>Aula</th>
+                        <th>Cupo</th>
+                        <th>Grado</th>
+                        <th style="display:none;">IDGrado</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tbody">
@@ -101,13 +166,21 @@
         e.preventDefault();
 
         var ins_descripcion = $("[name=ins_descripcion]").val();
+        var ins_turno = $("[name=ins_turno]").val();
+        var ins_aula = $("[name=ins_aula]").val();
+        var ins_cupo = $("[name=ins_cupo]").val();
+        var ins_grado = $("[name=ins_grado]").val();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>agregarGrado",
+            url: "<?php echo base_url(); ?>agregarSeccion",
             type: "post",
             dataType: "json",
             data: {
                 ins_descripcion: ins_descripcion,
+                ins_turno: ins_turno,
+                ins_aula: ins_aula,
+                ins_cupo: ins_cupo,
+                ins_grado: ins_grado
             },
             success: function(data) {
                 if (data.response == "success") {
@@ -146,22 +219,28 @@
                 }
             },
         });
+
     });
 
     function fetch() {
         $.ajax({
-            url: "<?php echo base_url(); ?>cargarGrados",
+            url: "<?php echo base_url(); ?>cargarSecciones",
             type: "get",
             dataType: "json",
             success: function(data) {
                 var tbody = "";
                 for (var key in data) {
                     tbody += "<tr>";
-                    tbody += "<td colspan='2'>" + data[key]["IDGrado"] + "</td>";
-                    tbody += "<td colspan='3'>" + data[key]["Descripcion"] + "</td>";
-                    tbody += `<td colspan='2'>
-                                    <a href="#" id="del" value="${data[key]["IDGrado"]}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
-                                    <a href="#" id="edit" value="${data[key]["IDGrado"]}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
+                    tbody += "<td>" + data[key]["IDSeccion"] + "</td>";
+                    tbody += "<td>" + data[key]["Descripcion"] + "</td>";
+                    tbody += "<td>" + data[key]["Turno"] + "</td>";
+                    tbody += "<td>" + data[key]["Aula"] + "</td>";
+                    tbody += "<td>" + data[key]["Cupo"] + "</td>";
+                    tbody += "<td>" + data[key]["Descripcion"] + "</td>";
+                    tbody += "<td style='display:none;'>" + data[key]["IDGrado"] + "</td>";
+                    tbody += `<td>
+                                    <a href="#" id="del" value="${data[key]["IDSeccion"]}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="#" id="edit" value="${data[key]["IDSeccion"]}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
                                 </td>`;
                     tbody += "<tr>";
                 }
@@ -202,7 +281,7 @@
                 .then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: "<?php echo base_url(); ?>eliminarGrado",
+                            url: "<?php echo base_url(); ?>eliminarSeccion",
                             type: "post",
                             dataType: "json",
                             data: {
@@ -239,7 +318,7 @@
             alert("ID requerido para editar");
         } else {
             $.ajax({
-                url: "<?php echo base_url(); ?>editarGrado",
+                url: "<?php echo base_url(); ?>editarSeccion",
                 type: "post",
                 dataType: "json",
                 data: {
@@ -248,8 +327,13 @@
                 success: function(data) {
                     if (data.response === "success") {
                         $("#modal_edit").modal("show");
-                        $("[name=edit_id]").val(data.post.IDGrado);
+                        $("#modal_edit").modal("show");
+                        $("[name=edit_id]").val(data.post.IDSeccion);
                         $("[name=edit_descripcion]").val(data.post.Descripcion);
+                        $("[name=edit_turno]").val(data.post.Turno);
+                        $("[name=edit_aula]").val(data.post.Aula);
+                        $("[name=edit_cupo]").val(data.post.Cupo);
+                        $("[name=edit_grado]").val(data.post.IDGrado);
                     } else {
                         Command: toastr["error"](data.message);
 
@@ -281,14 +365,23 @@
 
         var edit_id = $("[name=edit_id]").val();
         var edit_descripcion = $("[name=edit_descripcion]").val();
+        var edit_turno = $("[name=edit_turno]").val();
+        var edit_aula = $("[name=edit_aula]").val();
+        var edit_cupo = $("[name=edit_cupo]").val();
+        var edit_grado = $("[name=edit_grado]").val();
+
 
         $.ajax({
-            url: "<?php echo base_url(); ?>actualizarGrado",
+            url: "<?php echo base_url(); ?>actualizarSeccion",
             type: "post",
             dataType: "json",
             data: {
                 edit_id: edit_id,
                 edit_descripcion: edit_descripcion,
+                edit_turno: edit_turno,
+                edit_aula: edit_aula,
+                edit_cupo: edit_cupo,
+                edit_grado: edit_grado
             },
             success: function(data) {
                 fetch();

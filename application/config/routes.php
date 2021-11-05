@@ -71,3 +71,9 @@ $route['cargarGrados'] = 'GradosController/fetch';
 $route['editarGrado'] = 'GradosController/edit';
 $route['actualizarGrado'] = 'GradosController/update';
 $route['eliminarGrado'] = 'GradosController/delete';
+//Secciones
+$route['agregarSeccion'] = 'SeccionesController/insert';
+$route['cargarSecciones'] = 'SeccionesController/fetch';
+$route['editarSeccion'] = 'SeccionesController/edit';
+$route['actualizarSeccion'] = 'SeccionesController/update';
+$route['eliminarSeccion'] = 'SeccionesController/delete';

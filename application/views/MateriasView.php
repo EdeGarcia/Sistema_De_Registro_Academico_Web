@@ -61,7 +61,7 @@
 
                         </div>
                         <div class="modal-body">
-                            <form action="#" method="post" id="form_add">
+                            <form action="#" method="post" id="form_edit">
                                 <input type="hidden" name="edit_id">
                                 <div class="form-group">
                                     <label for="">Nombre</label>
