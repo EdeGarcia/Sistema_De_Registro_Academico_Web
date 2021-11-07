@@ -58,8 +58,8 @@
                 General
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="<?= site_url('EmpleadosController')?>">Gestión de empleados</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de usuarios</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EmpleadosController') ?>">Gestión de empleados</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('UsuariosController') ?>">Gestión de usuarios</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de maestros</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de periodos</a></li>
               </ul>
@@ -70,8 +70,8 @@
                 Grados y secciones
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="<?= site_url('GradosController')?>">Gestión de grados</a></li>
-                <li><a class="dropdown-item" href="<?= site_url('SeccionesController')?>">Gestión de secciones</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('GradosController') ?>">Gestión de grados</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('SeccionesController') ?>">Gestión de secciones</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de maestro por seccion</a></li>
               </ul>
             </li>
@@ -104,8 +104,8 @@
                 Grados y secciones
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="<?= site_url('GradosController')?>">Gestión de grados</a></li>
-                <li><a class="dropdown-item" href="<?= site_url('SeccionesController')?>">Gestión de secciones</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('GradosController') ?>">Gestión de grados</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('SeccionesController') ?>">Gestión de secciones</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de maestro por seccion</a></li>
               </ul>
             </li>
@@ -115,7 +115,7 @@
                 Materias
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="<?= site_url('MateriasController')?>">Gestión de materias</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('MateriasController') ?>">Gestión de materias</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de materias por grado</a></li>
               </ul>
             </li>
