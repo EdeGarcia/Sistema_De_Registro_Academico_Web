@@ -77,3 +77,9 @@ $route['cargarSecciones'] = 'SeccionesController/fetch';
 $route['editarSeccion'] = 'SeccionesController/edit';
 $route['actualizarSeccion'] = 'SeccionesController/update';
 $route['eliminarSeccion'] = 'SeccionesController/delete';
+//Periodos
+$route['agregarPeriodo'] = 'PeriodosController/insert';
+$route['cargarPeriodos'] = 'PeriodosController/fetch';
+$route['editarPeriodo'] = 'PeriodosController/edit';
+$route['actualizarPeriodo'] = 'PeriodosController/update';
+$route['eliminarPeriodo'] = 'PeriodosController/delete';
