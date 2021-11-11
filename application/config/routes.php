@@ -83,3 +83,10 @@ $route['cargarPeriodos'] = 'PeriodosController/fetch';
 $route['editarPeriodo'] = 'PeriodosController/edit';
 $route['actualizarPeriodo'] = 'PeriodosController/update';
 $route['eliminarPeriodo'] = 'PeriodosController/delete';
+
+//Usuarios -C
+$route['agregarUsuario'] = 'UsuariosController/insert';
+$route['cargarUsuarios'] = 'UsuariosController/fetch';
+$route['editarUsuario'] = 'UsuariossController/edit';
+$route['actualizarUsuario'] = 'UsuariosController/update';
+$route['eliminarUsuario'] = 'UsuariosController/delete';
