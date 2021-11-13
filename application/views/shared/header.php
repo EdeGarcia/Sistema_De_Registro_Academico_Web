@@ -61,7 +61,7 @@
                 <li><a class="dropdown-item" href="<?= site_url('EmpleadosController') ?>">Gestión de empleados</a></li>
                 <li><a class="dropdown-item" href="<?= site_url('UsuariosController') ?>">Gestión de usuarios</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de maestros</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de periodos</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('PeriodosController') ?>">Gestión de periodos</a></li>
               </ul>
             </li>
 

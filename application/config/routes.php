@@ -83,3 +83,9 @@ $route['cargarResponsables'] = 'ResponsablesController/fetch';
 $route['editarResponsable'] = 'ResponsablesController/edit';
 $route['actualizarResponsable'] = 'ResponsablesController/update';
 $route['eliminarResponsable'] = 'ResponsablesController/delete';
+//Periodos
+$route['agregarPeriodo'] = 'PeriodosController/insert';
+$route['cargarPeriodos'] = 'PeriodosController/fetch';
+$route['editarPeriodo'] = 'PeriodosController/edit';
+$route['actualizarPeriodo'] = 'PeriodosController/update';
+$route['eliminarPeriodo'] = 'PeriodosController/delete';
