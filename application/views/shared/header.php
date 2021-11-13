@@ -81,7 +81,7 @@
                 Responsables y estudiantes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de responsables</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
               </ul>
             </li>
@@ -125,7 +125,7 @@
                 Responsables y estudiantes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de responsables</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
               </ul>
             </li>
@@ -149,7 +149,7 @@
                 Responsables y estudiantes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de responsables</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
               </ul>
             </li>
@@ -188,7 +188,7 @@
                 Responsables y estudiantes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de responsables</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
                 <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
               </ul>
             </li>

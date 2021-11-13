@@ -77,3 +77,9 @@ $route['cargarSecciones'] = 'SeccionesController/fetch';
 $route['editarSeccion'] = 'SeccionesController/edit';
 $route['actualizarSeccion'] = 'SeccionesController/update';
 $route['eliminarSeccion'] = 'SeccionesController/delete';
+//Responsables
+$route['agregarResponsable'] = 'ResponsablesController/insert';
+$route['cargarResponsables'] = 'ResponsablesController/fetch';
+$route['editarResponsable'] = 'ResponsablesController/edit';
+$route['actualizarResponsable'] = 'ResponsablesController/update';
+$route['eliminarResponsable'] = 'ResponsablesController/delete';
