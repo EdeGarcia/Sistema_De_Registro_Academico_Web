@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 mt-2">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add"  onclick="modificarTituloModal('Agregar usuario');">
                 Agregar
             </button>
 
@@ -19,7 +19,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
 
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+                            <h5 class="modal-title" id="tituloModal">Agregar/modificar</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -36,7 +36,7 @@
                                 <!-- Contraseña -->
                                 <div class="form-group">
                                     <label for="">Contraseña</label>
-                                    <input type="text" class="form-control" name="ins_contrasena" required>
+                                    <input type="password" class="form-control" name="ins_contrasena" required>
                                 </div>
 
                                 <!-- Rol -->
@@ -66,6 +66,7 @@
                         </div>
 
                         <div class="modal-footer">
+
                             <button type="button" class="btn btn-primary" onclick="insertar()">Guardar</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         </div>
@@ -89,7 +90,7 @@
                             <table class="table">
                                 <thead>
                                     <th>Id</th>
-                                    <th>Nombre Completo</th>                                    
+                                    <th>Nombre Completo</th>
                                     <th>Acción</th>
                                 </thead>
                                 <tbody id="tbodyEmpleados">
@@ -98,6 +99,7 @@
 
                             </table>
                             <center>
+
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             </center>
                         </div>
@@ -164,11 +166,18 @@
             </table>
         </div>
     </div>
-   
+
+
+
 
 </div>
 
 <script>
+
+    const modificarTituloModal = (titulo) => {
+        $("#tituloModal").text(titulo);
+    }
+
     const cargarUsuarios = () => {
         $.get({
             url: 'cargarUsuarios',
@@ -182,8 +191,8 @@
                         <td>${usuario.Rol}</td>
                         <td>${usuario.IDEmpleado}</td>
                         <td>
-                            <a href="#" id="del" value="${usuario.IDUsuario}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
-                            <a href="#" id="edit" value="${usuario.IDUsuario}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>                                       
+                            <a href="#" id="edit" onclick="cargarEmpleado('${usuario.IDUsuario}')" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>                                       
+                            <a href="#" id="del" onclick="cargarEmpleado('${usuario.IDUsuario}')" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>`;
                 });
@@ -197,7 +206,8 @@
             url: 'cargarEmpleados',
             dataType: "json",
             success: function(result) {
-                let lista = "", nombreCompleto = "";
+                let lista = "",
+                    nombreCompleto = "";
                 result.forEach(empleado => {
                     nombreCompleto = `${empleado.Nombres} ${empleado.Apellidos}`;
                     lista += `
@@ -214,30 +224,50 @@
         });
     }
 
+    const cargarEmpleado = (id) => {
+        $.get({
+            url: 'cargarUsuario',
+            dataType: "json",
+            data: {
+                id: id
+            },
+            success: function(usuario) {
+                
+                modificarTituloModal("Modificar usuario");
+                $("[name='ins_usuario']").val(usuario.Usuario);
+                $("[name='ins_contrasena']").val(usuario.Clave);
+                $("[name='ins_rol']").val(usuario.Rol);
+                $("[name='ins_idEmpleado']").val(usuario.IDEmpleado);
+
+                $('#modal_add').modal('toggle');
+               
+               // nomEmpleado
+               
+
+            }
+        });
+    }
+
     const seleccionarEmpleado = (id, nombreCompleto) => {
         $('#ins_idEmpleado').val(id);
         $('#nomEmpleado').val(nombreCompleto);
         $('#SeleccionarEmpleado').modal('toggle');
     }
 
-    const insertar = () =>{  
-        
+    const insertar = () => {
+
+        let datosFormulario = $("#form_add").serialize();
+
         $.post({
-            url: 'agregarUsuario',            
+            url: 'agregarUsuario',
             dataType: "json",
-            data: {
-                ins_usuario      : $("[name='ins_usuario']").val(),
-                ins_contrasena   : $("[name='ins_contrasena']").val(),
-                ins_rol          : $("[name='ins_rol']").val(),
-                ins_idEmpleado   : $("[name='ins_idEmpleado']").val()
-            },
+            data: datosFormulario,
             success: function(data) {
-                if (data.response == "success") {                    
+                if (data.response == "success") {
                     $('#modal_add').modal('toggle');
                     $("#ins_idEmpleado").val('');
-                    $("#form_add")[0].reset();
-                                        
-                    cargarUsuarios();
+                    $('#form_add').trigger("reset");
+
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -245,37 +275,28 @@
                         showConfirmButton: false,
                         timer: 1500
                     });
-                } else {
-                    Command: toastr["error"](data.message);
 
-                    toastr.options = {
-                        closeButton: false,
-                        debug: false,
-                        newestOnTop: false,
-                        progressBar: false,
-                        positionClass: "toast-top-right",
-                        preventDuplicates: false,
-                        onclick: null,
-                        showDuration: "300",
-                        hideDuration: "1000",
-                        timeOut: "5000",
-                        extendedTimeOut: "1000",
-                        showEasing: "swing",
-                        hideEasing: "linear",
-                        showMethod: "fadeIn",
-                        hideMethod: "fadeOut",
-                    };
+                    cargarUsuarios();
+                } else {
+                    toastr["error"](data.message);
                 }
             },
         });
-
-
-
     }
 
 
     (() => { //ejecutar a cargar pagina
         cargarUsuarios();
         cargarEmpleados();
+
+        /*$.get({
+            url: "cargarUsuario",
+            data: {
+                "id": 1
+            },
+            success: function(data) {
+                console.log(data);
+            }
+        });*/
     })();
 </script>

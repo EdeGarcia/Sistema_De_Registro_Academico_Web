@@ -147,4 +147,18 @@ class EmpleadosController extends CI_Controller
 			echo "'¡Acceso directo al script no permitido!'";
 		}
 	}
+
+	public function fetchbyId()
+    {
+        if ($this->input->is_ajax_request()) {
+
+            $editId = $this->input->get('id');
+            $empleado = $this->EmpleadosModel->single_entry($editId);
+            header('Content-type: application/json');
+            echo json_encode($empleado);
+        } else {
+            echo "'¡Acceso directo al script no permitido!'";
+        }
+    }
+
 }

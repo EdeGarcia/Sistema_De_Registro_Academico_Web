@@ -30,6 +30,19 @@ class UsuariosController extends CI_Controller
         }
     }
 
+    public function fetchbyId()
+    {
+        if ($this->input->is_ajax_request()) {
+
+            $editId = $this->input->get('id');
+            $usuario = $this->UsuariosModel->single_entry($editId);
+            header('Content-type: application/json');
+            echo json_encode($usuario);
+        } else {
+            echo "'¡Acceso directo al script no permitido!'";
+        }
+    }
+
     public function insert()
     {
         if ($this->input->is_ajax_request()) {
