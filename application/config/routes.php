@@ -89,3 +89,14 @@ $route['cargarPeriodos'] = 'PeriodosController/fetch';
 $route['editarPeriodo'] = 'PeriodosController/edit';
 $route['actualizarPeriodo'] = 'PeriodosController/update';
 $route['eliminarPeriodo'] = 'PeriodosController/delete';
+//Estudiantes
+$route['cargarEstudiantes'] = 'EstudiantesController/fetch';
+$route['agregarEstudiante'] = 'EstudiantesController/insert';
+
+
+//Grados materias
+$route['cargarMateriasGrado'] = 'GradosMateriasController/grado_materia';
+$route['eliminarMateriaGrado'] = 'GradosMateriasController/delete';
+$route['agregarMateriaGrado'] = 'GradosMateriasController/insert';
+
+

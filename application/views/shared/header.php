@@ -60,7 +60,6 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('EmpleadosController') ?>">Gestión de empleados</a></li>
                 <li><a class="dropdown-item" href="<?= site_url('UsuariosController') ?>">Gestión de usuarios</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de maestros</a></li>
                 <li><a class="dropdown-item" href="<?= site_url('PeriodosController') ?>">Gestión de periodos</a></li>
               </ul>
             </li>
@@ -82,7 +81,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EstudiantesController') ?>">Gestión de estudiantes</a></li>
               </ul>
             </li>
 
@@ -116,7 +115,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('MateriasController') ?>">Gestión de materias</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de materias por grado</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('GradosMateriasController') ?>">Gestión de materias por grado</a></li>
               </ul>
             </li>
 
@@ -126,7 +125,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EstudiantesController') ?>">Gestión de estudiantes</a></li>
               </ul>
             </li>
 
@@ -150,7 +149,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EstudiantesController') ?>">Gestión de estudiantes</a></li>
               </ul>
             </li>
 
@@ -189,7 +188,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EstudiantesController') ?>">Gestión de estudiantes</a></li>
               </ul>
             </li>
 
