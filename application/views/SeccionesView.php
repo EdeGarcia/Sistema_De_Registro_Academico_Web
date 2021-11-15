@@ -143,7 +143,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Secion</th>
+                        <th>Sección</th>
                         <th>Turno</th>
                         <th>Aula</th>
                         <th>Cupo</th>
@@ -231,16 +231,16 @@
                 var tbody = "";
                 for (var key in data) {
                     tbody += "<tr>";
-                    tbody += "<td>" + data[key]["IDSeccion"] + "</td>";
-                    tbody += "<td>" + data[key]["Descripcion"] + "</td>";
+                    tbody += "<td>" + data[key]["ID"] + "</td>";
+                    tbody += "<td>" + data[key]["Seccion"] + "</td>";
                     tbody += "<td>" + data[key]["Turno"] + "</td>";
                     tbody += "<td>" + data[key]["Aula"] + "</td>";
                     tbody += "<td>" + data[key]["Cupo"] + "</td>";
-                    tbody += "<td>" + data[key]["Descripcion"] + "</td>";
+                    tbody += "<td>" + data[key]["Grado"] + "</td>";
                     tbody += "<td style='display:none;'>" + data[key]["IDGrado"] + "</td>";
                     tbody += `<td>
-                                    <a href="#" id="del" value="${data[key]["IDSeccion"]}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
-                                    <a href="#" id="edit" value="${data[key]["IDSeccion"]}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
+                                    <a href="#" id="del" value="${data[key]["ID"]}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="#" id="edit" value="${data[key]["ID"]}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
                                 </td>`;
                     tbody += "<tr>";
                 }

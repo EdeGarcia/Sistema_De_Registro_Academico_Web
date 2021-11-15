@@ -3,7 +3,10 @@ class SeccionesModel extends CI_Model
 {
     public function get_entries()
     {
-        $query = $this->db->query("SELECT a.IDSeccion, a.Descripcion, a.Turno, a.Aula, a.Cupo, b.IDGrado, b.Descripcion FROM Secciones a, Grados b WHERE a.IDGrado = b.IDGrado;");
+        $query = $this->db->query("SELECT a.IDSeccion AS ID,b.Descripcion AS Grado, a.Descripcion AS Seccion, a.Cupo, a.Turno, a.Aula
+                                  FROM secciones a, grados b 
+                                  WHERE a.IDGrado = b.IDGrado 
+                                  ORDER BY Grado;");
         return $query->result();
     }
 
