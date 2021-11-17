@@ -8,6 +8,14 @@
     <link rel="shortcout icon" href="<?php echo base_url(); ?>assets/img/logo_sistema.png">
     <title>Inicio de sesión</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css">
+
+
     <!--JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
