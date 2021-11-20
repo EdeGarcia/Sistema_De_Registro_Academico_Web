@@ -7,6 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcout icon" href="<?php echo base_url(); ?>assets/img/logo_sistema.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+  
+  <!-- Estilos generales -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
@@ -60,7 +66,6 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('EmpleadosController') ?>">Gestión de empleados</a></li>
                 <li><a class="dropdown-item" href="<?= site_url('UsuariosController') ?>">Gestión de usuarios</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de maestros</a></li>
                 <li><a class="dropdown-item" href="<?= site_url('PeriodosController') ?>">Gestión de periodos</a></li>
               </ul>
             </li>
@@ -81,8 +86,8 @@
                 Responsables y estudiantes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de responsables</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EstudiantesController') ?>">Gestión de estudiantes</a></li>
               </ul>
             </li>
 
@@ -116,7 +121,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('MateriasController') ?>">Gestión de materias</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de materias por grado</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('GradosMateriasController') ?>">Gestión de materias por grado</a></li>
               </ul>
             </li>
 
@@ -125,8 +130,8 @@
                 Responsables y estudiantes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de responsables</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EstudiantesController') ?>">Gestión de estudiantes</a></li>
               </ul>
             </li>
 
@@ -149,8 +154,8 @@
                 Responsables y estudiantes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de responsables</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EstudiantesController') ?>">Gestión de estudiantes</a></li>
               </ul>
             </li>
 
@@ -188,8 +193,8 @@
                 Responsables y estudiantes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de responsables</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de estudiantes</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('ResponsablesController') ?>">Gestión de responsables</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('EstudiantesController') ?>">Gestión de estudiantes</a></li>
               </ul>
             </li>
 

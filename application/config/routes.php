@@ -77,6 +77,12 @@ $route['cargarSecciones'] = 'SeccionesController/fetch';
 $route['editarSeccion'] = 'SeccionesController/edit';
 $route['actualizarSeccion'] = 'SeccionesController/update';
 $route['eliminarSeccion'] = 'SeccionesController/delete';
+//Responsables
+$route['agregarResponsable'] = 'ResponsablesController/insert';
+$route['cargarResponsables'] = 'ResponsablesController/fetch';
+$route['editarResponsable'] = 'ResponsablesController/edit';
+$route['actualizarResponsable'] = 'ResponsablesController/update';
+$route['eliminarResponsable'] = 'ResponsablesController/delete';
 //Periodos
 $route['agregarPeriodo'] = 'PeriodosController/insert';
 $route['cargarPeriodos'] = 'PeriodosController/fetch';
@@ -93,3 +99,20 @@ $route['eliminarUsuario'] = 'UsuariosController/delete';
 
 //EmpleadoporId
 $route['cargarEmpleado'] = 'EmpleadosController/fetchbyId';
+=======
+//Estudiantes
+$route['cargarEstudiantes'] = 'EstudiantesController/fetch';
+$route['agregarEstudiante'] = 'EstudiantesController/insert';
+$route['cargarEstudiante'] = 'EstudiantesController/edit';
+
+//Grados materias
+$route['cargarMateriasGrado'] = 'GradosMateriasController/grado_materia';
+$route['eliminarMateriaGrado'] = 'GradosMateriasController/delete';
+$route['agregarMateriaGrado'] = 'GradosMateriasController/insert';
+
+//Matricula
+$route['cargarSeccionesGrado'] = 'MatriculasController/secciones_grado';
+$route['cargarEstudiantesBuscar'] = 'MatriculasController/cargar_estudiantes';
+$route['guardarMatricula'] = 'MatriculasController/insert';
+$route['cargarMatriculas'] = 'MatriculasController/fetch';
+$route['eliminarMatricula'] = 'MatriculasController/delete';

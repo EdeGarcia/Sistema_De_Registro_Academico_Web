@@ -213,25 +213,27 @@
   </div>
   <div class="row">
     <div class="col-md-12 mt-3">
-      <table class="table table-hover table-responsive-md">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Fecha de nacimiento</th>
-            <th>Sexo</th>
-            <th>Telfono</th>
-            <th>DUI</th>
-            <th>NIT</th>
-            <th>Título</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="tbody">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Fecha de nacimiento</th>
+              <th>Sexo</th>
+              <th>Telfono</th>
+              <th>DUI</th>
+              <th>NIT</th>
+              <th>Título</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -484,7 +486,7 @@
             showConfirmButton: false,
             timer: 1500
           })
-          
+
         } else {
           Command: toastr["error"](data.message);
 

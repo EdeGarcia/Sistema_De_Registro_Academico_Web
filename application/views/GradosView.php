@@ -79,18 +79,20 @@
 
     <div class="row">
         <div class="col-md-12 mt-3">
-            <table class="table table-hover table-responsive-md">
-                <thead>
-                    <tr>
-                        <th colspan="2">ID</th>
-                        <th colspan="3">Grado</th>
-                        <th colspan="2">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th colspan="2">ID</th>
+                            <th colspan="3">Grado</th>
+                            <th colspan="2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
