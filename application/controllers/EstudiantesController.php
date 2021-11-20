@@ -48,7 +48,7 @@ class EstudiantesController extends CI_Controller
             $this->form_validation->set_rules('ins_sexo', 'Sexo', 'required');
             $this->form_validation->set_rules('ins_nie', 'NIE', 'required');
             $this->form_validation->set_rules('ins_idResponsable', 'Responsable', 'required');
-            
+
 
             $this->form_validation->set_message('required', 'El campo %s es requerido.');
             $this->form_validation->set_message('min_length', 'El campo %s debe tener como minimo %s caracteres.');
@@ -63,7 +63,7 @@ class EstudiantesController extends CI_Controller
                 $data_['Sexo'] =  $ajax_data["ins_sexo"];
                 $data_['NIE'] =  $ajax_data["ins_nie"];
                 $data_['IDResponsable'] =  $ajax_data["ins_idResponsable"];
-                
+
 
                 if ($this->EstudiantesModel->insert_entry($data_)) {
                     $data = array('response' => "success", 'message' => "¡Registro ingresado correctamente!");
@@ -78,6 +78,21 @@ class EstudiantesController extends CI_Controller
             echo json_encode($data);
         } else {
             echo "'¡Acceso directo al script no permitido!'";
+        }
+    }
+
+    public function edit()
+    {
+        if ($this->input->is_ajax_request()) {
+            $edit_id = $this->input->post('id');
+
+            if ($post = $this->EstudiantesModel->single_entry($edit_id)) {
+                $data = array('response' => "success", 'post' => $post);
+            } else {
+                $data = array('response' => "error", 'message' => "¡Ocurrio un error!");
+            }
+
+            echo json_encode($data);
         }
     }
 }

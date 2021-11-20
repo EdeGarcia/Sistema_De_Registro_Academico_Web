@@ -165,24 +165,26 @@
 
     <div class="row">
         <div class="col-md-12 mt-3">
-            <table class="table table-hover table-responsive-md">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Dirección</th>
-                        <th>Fecha nacimiento</th>
-                        <th>Sexo</th>
-                        <th>NIE</th>
-                        <th>Responsable</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Dirección</th>
+                            <th>Fecha nacimiento</th>
+                            <th>Sexo</th>
+                            <th>NIE</th>
+                            <th>Responsable</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

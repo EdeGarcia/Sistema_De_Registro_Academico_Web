@@ -139,23 +139,25 @@
 
     <div class="row">
         <div class="col-md-12 mt-3">
-            <table class="table table-hover table-responsive-md">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Sección</th>
-                        <th>Turno</th>
-                        <th>Aula</th>
-                        <th>Cupo</th>
-                        <th>Grado</th>
-                        <th style="display:none;">IDGrado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Sección</th>
+                            <th>Turno</th>
+                            <th>Aula</th>
+                            <th>Cupo</th>
+                            <th>Grado</th>
+                            <th style="display:none;">IDGrado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

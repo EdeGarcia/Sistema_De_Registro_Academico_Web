@@ -89,19 +89,21 @@
 
     <div class="row">
         <div class="col-md-12 mt-3">
-            <table class="table table-hover table-responsive-md">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Materia</th>
-                        <th colspan="3">Descripcion</th>
-                        <th colspan="2">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Materia</th>
+                            <th colspan="3">Descripcion</th>
+                            <th colspan="2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -319,7 +321,7 @@
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    
+
                     $("#form_edit")[0].reset();
 
                 } else {
