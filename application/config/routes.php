@@ -88,8 +88,7 @@ $route['eliminarPeriodo'] = 'PeriodosController/delete';
 $route['agregarUsuario'] = 'UsuariosController/insert';
 $route['cargarUsuarios'] = 'UsuariosController/fetch';
 $route['cargarUsuario'] = 'UsuariosController/fetchbyId';
-$route['editarUsuario'] = 'UsuariossController/edit';
-$route['actualizarUsuario'] = 'UsuariosController/update';
+$route['editarUsuario'] = 'UsuariosController/edit';
 $route['eliminarUsuario'] = 'UsuariosController/delete';
 
 //EmpleadoporId

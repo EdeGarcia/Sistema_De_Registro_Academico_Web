@@ -26,6 +26,8 @@
                         <div class="modal-body">
                             <form action="#" method="post" id="form_add">
                                 <!-- Usuario -->
+                                <!--ins_IDUsuario-->
+                                <input type="hidden" name="ins_IDUsuario">
                                 <div class="form-group">
                                     <label for="">Usuario</label>
                                     <input type="text" name="ins_usuario" class="form-control" required>
@@ -40,7 +42,7 @@
                                     <div id="ocultarClave">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <input type="checkbox" id="btnCambiarClave" onclick="manipularInputClave()">
+                                                <input type="checkbox" id="btnCambiarClave" name="cambiarClave" onclick="manipularInputClave()">
                                                 <span>Cambiar</span>
                                             </div>
                                         </div>
@@ -243,6 +245,7 @@
             success: function(usuario) {
 
                 modificarTituloModal("Modificar usuario");
+                $("[name='ins_IDUsuario']").val(usuario.IDUsuario);
                 $("[name='ins_usuario']").val(usuario.Usuario);
                 $("[name='ins_contrasena']").val(usuario.Clave);
                 $("[name='ins_rol']").val(usuario.Rol);
@@ -291,12 +294,12 @@
         });
     }
 
-    const editar = () => {
-
-        let datosFormulario = $("#form_add").serialize();
+    const editar = () => {       
+    
+        let datosFormulario = $("#form_add").serialize(); 
 
         $.post({
-            url: 'agregarUsuario',
+            url: 'editarUsuario',
             dataType: "json",
             data: datosFormulario,
             success: function(data) {

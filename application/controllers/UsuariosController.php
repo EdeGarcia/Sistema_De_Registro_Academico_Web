@@ -42,7 +42,7 @@ class UsuariosController extends CI_Controller
             echo "'¡Acceso directo al script no permitido!'";
         }
     }
-
+    
     public function insert()
     {
         if ($this->input->is_ajax_request()) {
@@ -60,7 +60,7 @@ class UsuariosController extends CI_Controller
                 $ajax_data = $this->input->post();
 
                 $data_['Usuario'] =  $ajax_data["ins_usuario"];
-                $data_['Clave'] =  $ajax_data["ins_contrasena"];                
+                $data_['Clave'] =  sha1($ajax_data["ins_contrasena"]);                
                 $data_['Rol'] =  $ajax_data["ins_rol"];
                 $data_['IDEmpleado'] =  $ajax_data["ins_idEmpleado"];
 
@@ -79,6 +79,59 @@ class UsuariosController extends CI_Controller
             echo "'¡Acceso directo al script no permitido!'";
         }
     }
+
+
+
+    public function edit()
+    {
+        if ($this->input->is_ajax_request()) {
+
+            $this->form_validation->set_rules('ins_IDUsuario', 'IDUsuario', 'required');
+            $this->form_validation->set_rules('ins_usuario', 'Usuario', 'required');
+            
+            $this->form_validation->set_rules('ins_rol', 'Rol', 'required');
+            $this->form_validation->set_rules('ins_idEmpleado', 'IDEmpleado', 'required');
+            
+
+            $this->form_validation->set_message('required', 'El campo %s es requerido.');
+            $this->form_validation->set_message('min_length', 'El campo %s debe tener como minimo %s caracteres.');
+
+            if ($this->form_validation->run()) {
+                $ajax_data = $this->input->post();
+
+                $data_['IDUsuario']     =  $ajax_data["ins_IDUsuario"];
+                $data_['Usuario']       =  $ajax_data["ins_usuario"];
+                              
+                $data_['Rol']           =  $ajax_data["ins_rol"];
+                $data_['IDEmpleado']    =  $ajax_data["ins_idEmpleado"];
+
+                if(array_key_exists('cambiarClave', $ajax_data)  )
+                {
+                    $data_['Clave']     =  sha1($ajax_data["ins_contrasena"]);  
+                }
+                else{
+                    $user = $this->UsuariosModel->single_entry($ajax_data["ins_IDUsuario"]);
+                    $data_['Clave']     =  $user->Clave;  
+                }
+
+                
+
+                if ($this->UsuariosModel->update_entry($data_)) {
+                    $data = array('response' => "success", 'message' => "¡Registro modificado correctamente!");
+                } else {
+                    $data = array('response' => "error", 'message' => "¡Ocurrió un error!");
+                }
+            } else {
+
+                $data = array('response' => "error", 'message' => validation_errors());
+            }
+
+            echo json_encode($data);
+        } else {
+            echo "'¡Acceso directo al script no permitido!'";
+        }
+    }
+
 
 
 
