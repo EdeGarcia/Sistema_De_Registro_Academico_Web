@@ -14,7 +14,7 @@ class EstudiantesController extends CI_Controller
         $this->load->model('EstudiantesModel');
     }
 
-    //Metodo para cargar las vistas correspondientes de Grados
+    //Metodo para cargar las vistas correspondientes
     public function index()
     {
         //datos usados para mostrar el title de la página
@@ -81,18 +81,78 @@ class EstudiantesController extends CI_Controller
         }
     }
 
-    public function edit()
+    public function delete()
     {
         if ($this->input->is_ajax_request()) {
-            $edit_id = $this->input->post('id');
 
-            if ($post = $this->EstudiantesModel->single_entry($edit_id)) {
-                $data = array('response' => "success", 'post' => $post);
+            $del_id = $this->input->post('id');
+
+            if ($this->EstudiantesModel->delete_entry($del_id)) {
+                $data = array('response' => "success");
             } else {
-                $data = array('response' => "error", 'message' => "¡Ocurrio un error!");
+                $data = array('response' => "error");
             }
 
             echo json_encode($data);
+        }
+    }
+
+    public function fetchbyId()
+    {
+        if ($this->input->is_ajax_request()) {
+
+            $editId = $this->input->get('id');
+            $estudiante = $this->EstudiantesModel->single_entry($editId);
+            header('Content-type: application/json');
+            echo json_encode($estudiante);
+        } else {
+            echo "'¡Acceso directo al script no permitido!'";
+        }
+    }
+
+    public function edit()
+    {
+        if ($this->input->is_ajax_request()) {
+
+            $this->form_validation->set_rules('ins_nombres', 'Nombres', 'required');
+            $this->form_validation->set_rules('ins_apellidos', 'Apellidos', 'required');
+            $this->form_validation->set_rules('ins_direccion', 'Dirección', 'required');
+            $this->form_validation->set_rules('ins_fecha', 'Fecha nacimiento', 'required');
+            $this->form_validation->set_rules('ins_sexo', 'Sexo', 'required');
+            $this->form_validation->set_rules('ins_nie', 'NIE', 'required');
+            $this->form_validation->set_rules('ins_idResponsable', 'Responsable', 'required');
+
+
+            $this->form_validation->set_message('required', 'El campo %s es requerido.');
+            $this->form_validation->set_message('min_length', 'El campo %s debe tener como minimo %s caracteres.');
+
+
+            if ($this->form_validation->run()) {
+                $ajax_data = $this->input->post();
+
+                $data_['IDEstudiante'] =  $ajax_data["ins_idEstudiante"];
+                $data_['Nombres'] =  $ajax_data["ins_nombres"];
+                $data_['Apellidos'] =  $ajax_data["ins_apellidos"];
+                $data_['Direccion'] =  $ajax_data["ins_direccion"];
+                $data_['FechaNacimiento'] =  $ajax_data["ins_fecha"];
+                $data_['Sexo'] =  $ajax_data["ins_sexo"];
+                $data_['NIE'] =  $ajax_data["ins_nie"];
+                $data_['IDResponsable'] =  $ajax_data["ins_idResponsable"];
+
+
+                if ($this->EstudiantesModel->update_entry($data_)) {
+                    $data = array('response' => "success", 'message' => "¡Registro modificado correctamente!");
+                } else {
+                    $data = array('response' => "error", 'message' => "¡Ocurrió un error!");
+                }
+            } else {
+
+                $data = array('response' => "error", 'message' => validation_errors());
+            }
+
+            echo json_encode($data);
+        } else {
+            echo "'¡Acceso directo al script no permitido!'";
         }
     }
 }

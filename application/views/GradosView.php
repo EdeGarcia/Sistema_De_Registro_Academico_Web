@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-md-12 mt-5">
             <h1 class="text-center">Grados</h1>
@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 mt-2">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add">
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal_add">
                 Agregar
             </button>
 

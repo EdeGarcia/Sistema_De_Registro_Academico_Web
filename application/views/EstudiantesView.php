@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 mt-5">
-            <h1 class="text-center">Estudiantes</h1>
+            <h1 class="text-center"><i class="fas fa-users mr-2"></i>Estudiantes</h1>
             <hr style="background-color: black; color: black; height: 1px;">
         </div>
     </div>
@@ -9,26 +9,22 @@
     <div class="row">
         <div class="col-md-12 mt-2">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add">
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal_add" onclick="modificarTituloModal('Agregar estudiante');">
                 Agregar
             </button>
 
             <!-- Modal para agregar -->
-            <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal_add" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Responsable</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
+                            <h5 class="modal-title" id="tituloModal">Agregar/modificar</h5>
                         </div>
                         <div class="modal-body">
                             <form action="#" method="post" id="form_add">
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <input type="hidden" name="ins_idEstudiante">
                                         <!-- Nombres -->
                                         <div class="form-group">
                                             <label for="">Nombres</label>
@@ -98,8 +94,11 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="insertar()">Guardar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                            <button id="btnInsertar" type="button" class="btn btn-primary" onclick="insertar()">Guardar</button>
+                            <button id="btnEditar" type="button" class="btn btn-primary" onclick="editar()">Guardar cambios</button>
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarModal();">Cancelar</button>
                         </div>
 
                     </div>
@@ -129,33 +128,6 @@
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             </center>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal para editar -->
-            <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-
-                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Grado</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
-                        </div>
-                        <div class="modal-body">
-                            <form action="#" method="post" id="form_add">
-                                <input type="hidden" name="edit_id">
-                            </form>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="update">Guardar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -191,6 +163,38 @@
 </div>
 
 <script>
+    const modificarTituloModal = (titulo) => {
+        $("#tituloModal").text(titulo);
+        if (titulo === 'Agregar estudiante') {
+            $("#btnEditar").hide();
+            $("#btnInsertar").show();
+        } else {
+            $("#btnInsertar").hide();
+            $("#btnEditar").show();
+        }
+    }
+
+    const limpiarModal = () => {
+        $("#ins_idResponsable").val('');
+        $('#form_add').trigger("reset");
+    }
+
+    const nombreResponsablePorId = (id) => {
+        let nombre;
+        $.get({
+            url: 'cargarResponsable',
+            async: false,
+            dataType: "json",
+            data: {
+                id: id
+            },
+            success: function(responsable) {
+                nombre = responsable.Nombres + ' ' + responsable.Apellidos;
+            }
+        });
+        return nombre;
+    }
+
     const cargarResponsables = () => {
         $.get({
             url: 'cargarResponsables',
@@ -265,16 +269,119 @@
                         <td>${estudiante.FechaNacimiento}</td>
                         <td>${estudiante.Sexo}</td>
                         <td>${estudiante.NIE}</td>
-                        <td>${estudiante.IDResponsable}</td>
+                        <td>${nombreResponsablePorId(estudiante.IDResponsable)}</td>
                         <td>
-                            <a href="#" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>                                       
-                            <a href="#" id="del" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+                            <a href="#" id="edit" onclick="cargarEstudiante('${estudiante.IDEstudiante}')" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>                                       
+                            <a href="#" id="del" onclick="eliminarEstudiante('${estudiante.IDEstudiante}')" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>`;
                 });
                 $('#tbody').html(lista);
             }
         });
+    }
+
+    const eliminarEstudiante = (id) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger mr-2",
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "Advertencia",
+                text: "¿Desea eliminar el registro seleccionado?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Aceptar",
+                cancelButtonText: "Cancelar",
+                reverseButtons: true,
+            })
+            .then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "<?php echo base_url(); ?>eliminarEstudiante",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            id: id,
+                        },
+                        success: function(data) {
+                            cargarEstudiantes();
+                            if (data.response === "success") {
+                                swalWithBootstrapButtons.fire(
+                                    "Aviso",
+                                    "¡Registro eliminado correctamente!",
+                                    "success"
+                                );
+                            }
+                        },
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Cancelado",
+                        "La acción fue cancelada",
+                        "error"
+                    );
+                }
+            });
+    }
+
+    const cargarEstudiante = (id) => {
+        $.get({
+            url: 'cargarEstudiante',
+            dataType: "json",
+            data: {
+                id: id
+            },
+            success: function(estudiante) {
+                modificarTituloModal("Modificar estudiante");
+                $("[name='ins_idEstudiante']").val(estudiante.IDEstudiante);
+                $("[name='ins_nombres']").val(estudiante.Nombres);
+                $("[name='ins_apellidos']").val(estudiante.Apellidos);
+                $("[name='ins_direccion']").val(estudiante.Direccion);
+                $("[name='ins_fecha']").val(estudiante.FechaNacimiento);
+                $("[name='ins_sexo']").val(estudiante.Sexo);
+                $("[name='ins_nie']").val(estudiante.NIE);
+                // nomEstudiante
+                $("[name='ins_idResponsable']").val(estudiante.IDResponsable);
+                $("#nomResponsable").val(nombreResponsablePorId(estudiante.IDResponsable));
+                $('#modal_add').modal('toggle');
+            }
+        });
+    }
+
+    const editar = () => {
+
+        let datosFormulario = $("#form_add").serialize();
+
+        $.post({
+            url: 'editarEstudiante',
+            dataType: "json",
+            data: datosFormulario,
+            success: function(data) {
+                if (data.response == "success") {
+                    $('#modal_add').modal('toggle');
+                    limpiarModal();
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    cargarEstudiantes();
+                } else {
+                    toastr["error"](data.message);
+                }
+            },
+        });
+
     }
 
     (() => { //ejecutar a cargar pagina

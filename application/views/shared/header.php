@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
-  
+
   <!-- Estilos generales -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css">
 
@@ -77,7 +77,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('GradosController') ?>">Gestión de grados</a></li>
                 <li><a class="dropdown-item" href="<?= site_url('SeccionesController') ?>">Gestión de secciones</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de maestro por seccion</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('MaestrosSeccionesController') ?>">Gestión de maestro por seccion</a></li>
               </ul>
             </li>
 
@@ -91,18 +91,6 @@
               </ul>
             </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Reportes
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Estudiantes por sección</a></li>
-                <li><a class="dropdown-item" href="#">Notas por sección</a></li>
-                <li><a class="dropdown-item" href="#">Responsables por sección</a></li>
-                <li><a class="dropdown-item" href="#">Asistencias por sección</a></li>
-              </ul>
-            </li>
-
           <?php elseif ($this->session->userdata('rol') == 'Sub-Director') : ?>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -111,7 +99,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?= site_url('GradosController') ?>">Gestión de grados</a></li>
                 <li><a class="dropdown-item" href="<?= site_url('SeccionesController') ?>">Gestión de secciones</a></li>
-                <li><a class="dropdown-item" href="#">Gestión de maestro por seccion</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('MaestrosSeccionesController') ?>">Gestión de maestro por seccion</a></li>
               </ul>
             </li>
 
@@ -135,18 +123,6 @@
               </ul>
             </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Reportes
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Estudiantes por sección</a></li>
-                <li><a class="dropdown-item" href="#">Notas por sección</a></li>
-                <li><a class="dropdown-item" href="#">Responsables por sección</a></li>
-                <li><a class="dropdown-item" href="#">Asistencias por sección</a></li>
-              </ul>
-            </li>
-
           <?php elseif ($this->session->userdata('rol') == 'Secretaria') : ?>
 
             <li class="nav-item dropdown">
@@ -164,7 +140,7 @@
                 Matricula
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de matricula</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('MatriculasController') ?>">Gestión de matricula</a></li>
               </ul>
             </li>
 
@@ -200,10 +176,10 @@
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Matricula
+                Matrícula
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de matricula</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('MatriculasController') ?>">Gestión de matrícula</a></li>
               </ul>
             </li>
 
@@ -224,20 +200,6 @@
                 <li><a class="dropdown-item" href="#">Gestión de asistencia</a></li>
               </ul>
             </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Reportes
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Estudiantes por sección</a></li>
-                <li><a class="dropdown-item" href="#">Notas por sección</a></li>
-                <li><a class="dropdown-item" href="#">Responsables por sección</a></li>
-                <li><a class="dropdown-item" href="#">Asistencias por sección</a></li>
-              </ul>
-            </li>
-
-
           <?php endif; ?>
         </ul>
 

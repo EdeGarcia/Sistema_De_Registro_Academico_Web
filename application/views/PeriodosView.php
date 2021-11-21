@@ -1,13 +1,13 @@
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-md-12 mt-5">
-            <h1 class="text-center">Periodos</h1>
+            <h1 class="text-center"><i class="far fa-calendar-times mr-2"></i>Periodos</h1>
             <hr style="background-color: black; color: black; height: 1px;">
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 mt-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add">
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal_add">
                 Agregar
             </button>
 

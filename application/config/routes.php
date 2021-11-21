@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -83,6 +83,10 @@ $route['cargarResponsables'] = 'ResponsablesController/fetch';
 $route['editarResponsable'] = 'ResponsablesController/edit';
 $route['actualizarResponsable'] = 'ResponsablesController/update';
 $route['eliminarResponsable'] = 'ResponsablesController/delete';
+
+$route['cargarResponsable'] = 'ResponsablesController/fetchbyId';
+
+
 //Periodos
 $route['agregarPeriodo'] = 'PeriodosController/insert';
 $route['cargarPeriodos'] = 'PeriodosController/fetch';
@@ -99,11 +103,13 @@ $route['eliminarUsuario'] = 'UsuariosController/delete';
 
 //EmpleadoporId
 $route['cargarEmpleado'] = 'EmpleadosController/fetchbyId';
-=======
+
 //Estudiantes
 $route['cargarEstudiantes'] = 'EstudiantesController/fetch';
 $route['agregarEstudiante'] = 'EstudiantesController/insert';
-$route['cargarEstudiante'] = 'EstudiantesController/edit';
+$route['eliminarEstudiante'] = 'EstudiantesController/delete';
+$route['cargarEstudiante'] = 'EstudiantesController/fetchbyId';
+$route['editarEstudiante'] = 'EstudiantesController/edit';
 
 //Grados materias
 $route['cargarMateriasGrado'] = 'GradosMateriasController/grado_materia';
@@ -116,3 +122,9 @@ $route['cargarEstudiantesBuscar'] = 'MatriculasController/cargar_estudiantes';
 $route['guardarMatricula'] = 'MatriculasController/insert';
 $route['cargarMatriculas'] = 'MatriculasController/fetch';
 $route['eliminarMatricula'] = 'MatriculasController/delete';
+
+//Maestros Secciones
+$route['cargarMaestrosSecciones'] = 'MaestrosSeccionesController/fetch';
+$route['eliminarMaestroSeccion'] = 'MaestrosSeccionesController/delete';
+$route['agregarMaestroSeccion'] = 'MaestrosSeccionesController/insert';
+$route['cargarMaestros'] = 'MaestrosSeccionesController/fetch_masters';

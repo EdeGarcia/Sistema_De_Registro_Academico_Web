@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mt-5">
-            <h1 class="text-center">Usuarios</h1>
+            <h1 class="text-center"><i class="fas fa-users mr-2"></i>Usuarios</h1>
             <hr style="background-color: black; color: black; height: 1px;">
         </div>
     </div>
@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12 mt-2">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add" onclick="modificarTituloModal('Agregar usuario');">
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal_add" onclick="modificarTituloModal('Agregar usuario');">
                 Agregar
             </button>
 
@@ -20,7 +20,7 @@
                         <div class="modal-header">
 
                             <h5 class="modal-title" id="tituloModal">Agregar/modificar</h5>
-                            
+
 
                         </div>
                         <div class="modal-body">
@@ -76,8 +76,8 @@
 
                         <div class="modal-footer">
 
-                            <button id ="btnInsertar" type="button" class="btn btn-primary" onclick="insertar()">Guardar</button>
-                            <button id ="btnEditar" type="button" class="btn btn-primary" onclick="editar()">Guardar cambios</button>
+                            <button id="btnInsertar" type="button" class="btn btn-primary" onclick="insertar()">Guardar</button>
+                            <button id="btnEditar" type="button" class="btn btn-primary" onclick="editar()">Guardar cambios</button>
 
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarModal();">Cancelar</button>
                         </div>
@@ -119,20 +119,22 @@
 
     <div class="row">
         <div class="col-md-12 mt-3">
-            <table class="table table-hover table-responsive-md">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Usuario</th>
-                        <th>Rol</th>
-                        <th>Empleado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Rol</th>
+                            <th>Empleado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -171,14 +173,14 @@
             $("[name='ins_contrasena']").prop("disabled", true);
         }
     }
-   
+
     const cargarUsuarios = () => {
         $.get({
             url: 'cargarUsuarios',
             success: function(result) {
                 let lista = "";
-                result.forEach(usuario => {                   
-                    
+                result.forEach(usuario => {
+
                     lista += `
                     <tr>
                         <td>${usuario.IDUsuario}</td>
@@ -187,7 +189,7 @@
                         <td>${nombreEmpleadoPorId(usuario.IDEmpleado)}</td>
                         <td>
                             <a href="#" id="edit" onclick="cargarUsuario('${usuario.IDUsuario}')" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>                                       
-                            <a href="#" id="del" onclick="cargarUsuario('${usuario.IDUsuario}')" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+                            <a href="#" id="del" onclick="eliminarUsuario('${usuario.IDUsuario}')" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>`;
                 });
@@ -217,7 +219,7 @@
                 $('#tbodyEmpleados').html(lista);
             }
         });
-    }   
+    }
 
     const nombreEmpleadoPorId = (id) => {
         let nombre;
@@ -228,8 +230,8 @@
             data: {
                 id: id
             },
-            success: function(empleado) {               
-                nombre = empleado.Nombres + ' ' + empleado.Apellidos;              
+            success: function(empleado) {
+                nombre = empleado.Nombres + ' ' + empleado.Apellidos;
             }
         });
         return nombre;
@@ -251,7 +253,7 @@
                 $("[name='ins_rol']").val(usuario.Rol);
                 $("[name='ins_idEmpleado']").val(usuario.IDEmpleado);
                 // nomEmpleado
-                $("#nomEmpleado").val(nombreEmpleadoPorId(usuario.IDEmpleado));               
+                $("#nomEmpleado").val(nombreEmpleadoPorId(usuario.IDEmpleado));
 
                 $('#modal_add').modal('toggle');
 
@@ -294,9 +296,9 @@
         });
     }
 
-    const editar = () => {       
-    
-        let datosFormulario = $("#form_add").serialize(); 
+    const editar = () => {
+
+        let datosFormulario = $("#form_add").serialize();
 
         $.post({
             url: 'editarUsuario',
@@ -310,7 +312,7 @@
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: '¡Registro agregado con exito!',
+                        title: '¡Registro actualizado con exito!',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -324,10 +326,59 @@
 
     }
 
+    const eliminarUsuario = (id) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger mr-2",
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "Advertencia",
+                text: "¿Desea eliminar el registro seleccionado?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Aceptar",
+                cancelButtonText: "Cancelar",
+                reverseButtons: true,
+            })
+            .then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "<?php echo base_url(); ?>eliminarUsuario",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            id: id,
+                        },
+                        success: function(data) {
+                            cargarUsuarios();
+                            if (data.response === "success") {
+                                swalWithBootstrapButtons.fire(
+                                    "Aviso",
+                                    "¡Registro eliminado correctamente!",
+                                    "success"
+                                );
+                            }
+                        },
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Cancelado",
+                        "La acción fue cancelada",
+                        "error"
+                    );
+                }
+            });
+    }
+
 
     (() => { //ejecutar a cargar pagina
         cargarUsuarios();
         cargarEmpleados();
-      
+
     })();
 </script>

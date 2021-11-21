@@ -10,7 +10,7 @@
 
       <!-- Modal para agregar -->
       <!-- Large modal -->
-      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar</button>
+      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar</button>
 
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal_add">
         <div class="modal-dialog modal-lg">
