@@ -128,3 +128,10 @@ $route['cargarMaestrosSecciones'] = 'MaestrosSeccionesController/fetch';
 $route['eliminarMaestroSeccion'] = 'MaestrosSeccionesController/delete';
 $route['agregarMaestroSeccion'] = 'MaestrosSeccionesController/insert';
 $route['cargarMaestros'] = 'MaestrosSeccionesController/fetch_masters';
+
+
+//notas
+$route['cargarNotas'] = 'NotasController/notas_grado';
+$route['guardarNotas'] = 'NotasController/insert';
+
+

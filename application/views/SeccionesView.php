@@ -1,11 +1,15 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 mt-5">
-            <h1 class="text-center">Secciones</h1>
-            <hr style="background-color: black; color: black; height: 1px;">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <img src="<?php echo base_url(); ?>assets/img/logo_sistema.png" width="90" height="90" style="float:left;" alt="">
+                <h1 class="display-3" style="margin-left: 100px;">Secciones</h1>
+            </div>
         </div>
     </div>
+</div>
 
+<div class="container">
     <div class="row">
         <div class="col-md-12 mt-2">
 

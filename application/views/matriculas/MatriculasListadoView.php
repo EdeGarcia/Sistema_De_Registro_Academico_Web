@@ -1,10 +1,14 @@
 <div class="container-fluid">
     <div class="row">
-
-        <div class="col-md-12 mt-5">
-            <h1 class="text-center"><i class="far fa-address-card mr-3"></i>Listado de matriculas</h1>
-            <hr style="background-color: black; color: black; height: 1px;">
-            <a class="btn btn-outline-success" href="<?php echo site_url('MatriculasController'); ?>" role="button">Regresar</a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <img src="<?php echo base_url(); ?>assets/img/logo_sistema.png" width="90" height="90" style="float:left;" alt="">
+                        <h1 class="display-3" style="margin-left: 100px;">Listado de matriculas</h1>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -41,6 +45,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <button type="button" class="btn btn-outline-success" id="cargar">Aceptar</button>
+            <a class="btn btn-outline-success" href="<?php echo site_url('MatriculasController'); ?>" role="button">Regresar</a>
         </div>
         <div class="col-md-4"></div>
     </div>
@@ -69,65 +74,6 @@
 </div>
 
 <script>
-    $(document).on("click", "#del", function(e) {
-        e.preventDefault();
-
-        var del_id = $(this).attr("value");
-
-        if (del_id == "") {
-            alert("ID requerido para la eliminación");
-        } else {
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger mr-2",
-                },
-                buttonsStyling: false,
-            });
-
-            swalWithBootstrapButtons
-                .fire({
-                    title: "Advertencia",
-                    text: "¿Desea retirar la matricula del estudiante seleccionado?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Aceptar",
-                    cancelButtonText: "Cancelar",
-                    reverseButtons: true,
-                })
-                .then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: "<?php echo base_url(); ?>eliminarMatricula",
-                            type: "post",
-                            dataType: "json",
-                            data: {
-                                del_id: del_id,
-                            },
-                            success: function(data) {
-                                fetch();
-                                if (data.response === "success") {
-
-                                    swalWithBootstrapButtons.fire(
-                                        "Aviso",
-                                        "¡Matricula retirada correctamente!",
-                                        "success"
-                                    );
-                                }
-                            },
-                        });
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        swalWithBootstrapButtons.fire(
-                            "Cancelado",
-                            "La acción fue cancelada",
-                            "error"
-                        );
-                    }
-                });
-        }
-    });
-
-
     $("#ins_grado").on('change', function() {
         let id = $(this).val();
 
@@ -200,5 +146,65 @@
             fetch(idGrado, idSeccion);
         }
 
+    });
+
+    $(document).on("click", "#del", function(e) {
+        e.preventDefault();
+
+        var del_id = $(this).attr("value");
+
+        if (del_id == "") {
+            alert("ID requerido para la eliminación");
+        } else {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger mr-2",
+                },
+                buttonsStyling: false,
+            });
+
+            swalWithBootstrapButtons
+                .fire({
+                    title: "Advertencia",
+                    text: "¿Desea retirar la matricula del estudiante seleccionado?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Aceptar",
+                    cancelButtonText: "Cancelar",
+                    reverseButtons: true,
+                })
+                .then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>eliminarMatricula",
+                            type: "post",
+                            dataType: "json",
+                            data: {
+                                del_id: del_id,
+                            },
+                            success: function(data) {
+                                let idGrado = $("[name=ins_grado]").val();
+                                let idSeccion = $("[name=ins_seccion]").val();
+                                fetch(idGrado, idSeccion);
+                                if (data.response === "success") {
+
+                                    swalWithBootstrapButtons.fire(
+                                        "Aviso",
+                                        "¡Matricula retirada correctamente!",
+                                        "success"
+                                    );
+                                }
+                            },
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire(
+                            "Cancelado",
+                            "La acción fue cancelada",
+                            "error"
+                        );
+                    }
+                });
+        }
     });
 </script>

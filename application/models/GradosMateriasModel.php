@@ -5,7 +5,7 @@ class GradosMateriasModel extends CI_Model
     //Materias de un grado
     public function subjects_of_grade($idGrado)
     {
-        $query = $this->db->query("SELECT a.IDGrado_Materia, c.Nombre, C.Descripcion 
+        $query = $this->db->query("SELECT a.IDGrado_Materia, c.Nombre, C.Descripcion, a.IDMateria 
                                    FROM grados_materias a, grados b, materias c 
                                    WHERE a.IDGrado = b.IDGrado AND a.IDMateria = c.IDMateria AND a.IDGrado = " . $idGrado);
         return $query->result();

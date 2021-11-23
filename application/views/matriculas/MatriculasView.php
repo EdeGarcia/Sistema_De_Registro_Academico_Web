@@ -1,6 +1,6 @@
 <div class="container">
     <form action="" method="POST" id="form_add">
-        <div class="row mt-3">
+        <div class="row mt-4">
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <!-- IDGrado -->
@@ -155,27 +155,25 @@
         });
     });
 
-    const seleccionarEstudiante = (id) => {
-        $('#ins_idEstudiante').val(id);
-
-        $.ajax({
+    const nombreEstudiantePorId = (id) => {
+        let nombre;
+        $.get({
             url: "<?php echo base_url(); ?>cargarEstudiante",
-            type: "post",
+            async: false,
             dataType: "json",
             data: {
-                id: id,
+                id: id
             },
-            success: function(data) {
-                if (data.response === "success") {
-                    let nombre = data.post.Nombres + " " + data.post.Apellidos;
-
-                    $("[name=nomEstudiante]").val(nombre);
-                } else {
-                    $("[name=nomEstudiante]").val("");
-                }
-            },
+            success: function(estudiante) {
+                nombre = estudiante.Nombres + ' ' + estudiante.Apellidos;
+            }
         });
+        return nombre;
+    }
 
+    const seleccionarEstudiante = (id) => {
+        $('#ins_idEstudiante').val(id);
+        $('#nomEstudiante').val(nombreEstudiantePorId(id));
         $('#SeleccionarEstudiante').modal('hide');
     }
 
@@ -203,6 +201,7 @@
         });
 
         $("#ins_idEstudiante").val('');
+        $("#ins_secciones").html("");
         $('#form_add').trigger("reset");
         // location.replace("<?php echo base_url(); ?>PageController");
     }
