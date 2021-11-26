@@ -44,7 +44,7 @@
 
     <div class="container-fluid">
       <!-- Logo del sistema -->
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="<?= site_url('PageController') ?>">
         <img src="<?php echo base_url(); ?>assets/img/logo_sistema.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Sistema Academico
       </a>
@@ -203,10 +203,18 @@
           <?php endif; ?>
         </ul>
 
-        <div class="navbar-nav ms-auto mt-2">
-          <a href="<?php echo site_url('LoginController/logout'); ?>" type="button" class="btn btn-outline-warning" id="logout">Cerrar sesión</a>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" data-display="static" aria-expanded="false">
+            <i class="fas fa-cogs"></i> Opciones
+          </button>
+          <div class="dropdown-menu dropdown-menu-md-right">
+            <button class="dropdown-item" type="button"><i class="fas fa-user"></i> Usuario : <?php echo $this->session->userdata('usuario') ?></button>
+            <button class="dropdown-item" type="button"><i class="far fa-id-card"></i> Rol : <?php echo $this->session->userdata('rol') ?></button>
+            <div class="dropdown-divider"></div>
+            <a href="<?php echo site_url('LoginController/logout'); ?>" type="button" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+            <!-- <button  class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button> -->
+          </div>
         </div>
-      </div>
-    </div>
 
   </nav>

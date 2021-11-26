@@ -31,9 +31,10 @@ class PageController extends CI_Controller
 
     function sub_director()
     {
+        $data = array('titulo' => 'Inicio Sub-Director' );
         //Sub-Director
         if ($this->session->userdata('rol') == 'Sub-Director') {
-            $this->load->view('shared/header');
+            $this->load->view('shared/header', $data);
             $this->load->view('home/HomeSubDirector');
             $this->load->view('shared/footer');
         } else {
@@ -43,9 +44,10 @@ class PageController extends CI_Controller
 
     function secretaria()
     {
+        $data = array('titulo' => 'Inicio Secretaria' );
         //Secretaria
         if ($this->session->userdata('rol') == 'Secretaria') {
-            $this->load->view('shared/header');
+            $this->load->view('shared/header', $data);
             $this->load->view('home/HomeSecretaria');
             $this->load->view('shared/footer');
         } else {
