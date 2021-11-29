@@ -19,7 +19,7 @@
         </div>
         <div class="card-body text-primary">
           <p class="card-text">Asignación de usuarios a los empleados de la institución para los diferentes funciones del sistema.</p>
-          <a href="#" class="btn btn-info">Ver Información</a>
+          <a href="<?= site_url('UsuariosController') ?>" class="btn btn-info">Ver Información</a>
         </div>
       </div>
     </div>
@@ -42,11 +42,11 @@
       <div class="col mb-4">
         <div class="card border-primary mb-3" style="max-width: 18rem;">
           <div class="card-header bg-primary text-white">
-            <p class="mb-0 pr-5"><i class="fas fa-cog mr-3"></i>Gestionar materias de grados</p>
+            <p class="mb-0 pr-5"><i class="fas fa-cog mr-3"></i>Gestionar maestros por sección</p>
           </div>
           <div class="card-body text-primary">
-            <p class="card-text">Elija las materias que serán impartidas en cada grado.</p>
-            <a href="<?= site_url('GradosMateriasController') ?>" class="btn btn-info">Ver Información</a>
+            <p class="card-text">Elija el maestro encargado de cada sección.</p>
+            <a href="<?= site_url('MaestrosSeccionesController') ?>" class="btn btn-info">Ver Información</a>
           </div>
         </div>
       </div>

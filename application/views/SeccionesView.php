@@ -17,6 +17,8 @@
                 Agregar
             </button>
 
+            <a class="btn btn-outline-success" href="<?= site_url('SeccionesController/report_secciones') ?>"> Reporte en PDF</a>
+
             <!-- Modal para agregar -->
             <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

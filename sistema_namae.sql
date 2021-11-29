@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2021 a las 23:47:27
+-- Tiempo de generación: 29-11-2021 a las 19:55:23
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
 
@@ -45,8 +45,9 @@ CREATE TABLE `empleados` (
 
 INSERT INTO `empleados` (`IDEmpleado`, `Nombres`, `Apellidos`, `FechaNacimiento`, `Sexo`, `Telefono`, `DUI`, `NIT`, `Titulo`) VALUES
 (1, 'Edenilson Vladimir', 'Garcia Vasquez', '1999-01-12', 'Masculino', '7648-9546', '06906180-9', '120-120199-121-1', 'Bachiller'),
-(21, 'Edenilson Vladimir', 'García Vásquez', '1999-12-01', 'Masculino', '7648-9546', '05906180-9', '1234-123456-123-1', 'Bachiller'),
-(43, 'Juan Daniel', 'Perez Perez', '2000-02-12', 'Masculino', '1', '1', '1', '1');
+(21, 'Miguel Ángel ', 'García Mendez', '1999-12-23', 'Masculino', '7648-9546', '05906180-9', '1234-123456-123-1', 'Bachiller'),
+(48, 'Ana María', 'Pérez Mirón ', '2000-06-02', 'Femenino', '7802-2121', '123456789-', '1234-123456-123-2', 'Ingeniera en sistemas computacionales'),
+(49, 'Nancy Jamileth ', 'Pinzón Rivas', '1999-02-09', 'Femenino', '7821-2121', '12345678-2', '1234-123456-123-3', 'Bachiller');
 
 -- --------------------------------------------------------
 
@@ -64,6 +65,13 @@ CREATE TABLE `estudiantes` (
   `NIE` varchar(10) NOT NULL,
   `IDResponsable` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `estudiantes`
+--
+
+INSERT INTO `estudiantes` (`IDEstudiante`, `Nombres`, `Apellidos`, `Direccion`, `FechaNacimiento`, `Sexo`, `NIE`, `IDResponsable`) VALUES
+(16, 'Sonia Yamileth ', 'Pérez Santos', 'Ahuachapán ', '1999-03-21', 'Femenino', '1234567890', 16);
 
 -- --------------------------------------------------------
 
@@ -110,6 +118,13 @@ CREATE TABLE `maestros` (
   `IDEmpleado` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `maestros`
+--
+
+INSERT INTO `maestros` (`IDMaestro`, `IDEmpleado`) VALUES
+(5, 21);
+
 -- --------------------------------------------------------
 
 --
@@ -121,6 +136,13 @@ CREATE TABLE `maestros_secciones` (
   `IDMaestro` int(10) UNSIGNED NOT NULL,
   `IDSeccion` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `maestros_secciones`
+--
+
+INSERT INTO `maestros_secciones` (`IDMaestro_Seccion`, `IDMaestro`, `IDSeccion`) VALUES
+(4, 5, 16);
 
 -- --------------------------------------------------------
 
@@ -155,6 +177,13 @@ CREATE TABLE `matriculas` (
   `FechaMatricula` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `matriculas`
+--
+
+INSERT INTO `matriculas` (`IDMatricula`, `IDEstudiante`, `IDGrado`, `IDSeccion`, `FechaMatricula`) VALUES
+(13, 16, 11, 16, '2021-11-29');
+
 -- --------------------------------------------------------
 
 --
@@ -178,8 +207,19 @@ CREATE TABLE `notas` (
 
 CREATE TABLE `periodo` (
   `IDPeriodo` int(10) UNSIGNED NOT NULL,
-  `Periodo` varchar(45) NOT NULL
+  `Periodo` varchar(45) NOT NULL,
+  `Fecha_inicio` date NOT NULL,
+  `Fecha_fin` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `periodo`
+--
+
+INSERT INTO `periodo` (`IDPeriodo`, `Periodo`, `Fecha_inicio`, `Fecha_fin`) VALUES
+(6, 'Primer Periodo', '2021-01-12', '2021-03-13'),
+(7, 'Segundo Periodo', '2021-03-14', '2021-06-15'),
+(8, 'Tercer Periodo', '2021-06-15', '2021-09-16');
 
 -- --------------------------------------------------------
 
@@ -198,6 +238,13 @@ CREATE TABLE `responsables` (
   `NIT` varchar(17) NOT NULL,
   `Telefono` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `responsables`
+--
+
+INSERT INTO `responsables` (`IDResponsable`, `Nombres`, `Apellidos`, `FechaNacimiento`, `Sexo`, `TipoDeParentesco`, `DUI`, `NIT`, `Telefono`) VALUES
+(16, 'Juan Miguel', 'Pérez Pérez', '1987-04-21', 'Femenino', 'Padre', '12345678-9', '1234-123456-123-1', '7621-2131');
 
 -- --------------------------------------------------------
 
@@ -243,8 +290,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`IDUsuario`, `Usuario`, `Clave`, `Rol`, `IDEmpleado`) VALUES
-(1, 'admin', '1234', 'Director', 1),
-(7, 'Ede', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Director', 21);
+(1, 'admin', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Director', 1),
+(8, 'maestro', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Maestro', 21),
+(10, 'sub', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Sub-Director', 48),
+(11, 'secretaria', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Secretaria', 49);
 
 --
 -- Índices para tablas volcadas
@@ -350,13 +399,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `IDEmpleado` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `IDEmpleado` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  MODIFY `IDEstudiante` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `IDEstudiante` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `grados`
@@ -374,13 +423,13 @@ ALTER TABLE `grados_materias`
 -- AUTO_INCREMENT de la tabla `maestros`
 --
 ALTER TABLE `maestros`
-  MODIFY `IDMaestro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDMaestro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `maestros_secciones`
 --
 ALTER TABLE `maestros_secciones`
-  MODIFY `IDMaestro_Seccion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IDMaestro_Seccion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `materias`
@@ -392,7 +441,7 @@ ALTER TABLE `materias`
 -- AUTO_INCREMENT de la tabla `matriculas`
 --
 ALTER TABLE `matriculas`
-  MODIFY `IDMatricula` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `IDMatricula` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `notas`
@@ -404,13 +453,13 @@ ALTER TABLE `notas`
 -- AUTO_INCREMENT de la tabla `periodo`
 --
 ALTER TABLE `periodo`
-  MODIFY `IDPeriodo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDPeriodo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `responsables`
 --
 ALTER TABLE `responsables`
-  MODIFY `IDResponsable` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `IDResponsable` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `secciones`
@@ -422,7 +471,7 @@ ALTER TABLE `secciones`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `IDUsuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IDUsuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas

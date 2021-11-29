@@ -46,7 +46,7 @@
       <!-- Logo del sistema -->
       <a class="navbar-brand" href="<?= site_url('PageController') ?>">
         <img src="<?php echo base_url(); ?>assets/img/logo_sistema.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        Sistema Academico
+        Sistema Académico
       </a>
 
       <!-- Botnon toggler -->
@@ -149,16 +149,7 @@
                 Notas
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de notas</a></li>
-              </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Asistencias
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de asistencia</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('NotasController') ?>">Gestión de notas</a></li>
               </ul>
             </li>
 
@@ -188,18 +179,10 @@
                 Notas
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de notas</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('NotasController') ?>">Gestión de notas</a></li>
               </ul>
             </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Asistencias
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestión de asistencia</a></li>
-              </ul>
-            </li>
           <?php endif; ?>
         </ul>
 
@@ -213,7 +196,6 @@
             <button class="dropdown-item" type="button"><i class="far fa-id-card"></i> Rol : <?php echo $this->session->userdata('rol') ?></button>
             <div class="dropdown-divider"></div>
             <a href="<?php echo site_url('LoginController/logout'); ?>" type="button" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-            <!-- <button  class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button> -->
           </div>
         </div>
 

@@ -17,6 +17,8 @@
                 Agregar
             </button>
 
+            <a class="btn btn-outline-success" href="<?= site_url('PeriodosController/report_periodos') ?>"> Reporte en PDF</a>
+
             <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -33,6 +35,16 @@
                                 <div class="form-group">
                                     <label for="">Periodo</label>
                                     <input type="text" name="ins_periodo" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Fecha inicio</label>
+                                    <input id="ins_fecha_inicio" class="form-control" type="date" name="ins_fecha_inicio">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Fecha fin</label>
+                                    <input id="ins_fecha_fin" class="form-control" type="date" name="ins_fecha_fin">
                                 </div>
 
                             </form>
@@ -64,6 +76,15 @@
                                     <label for="">Periodo</label>
                                     <input type="text" name="edit_periodo" class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Fecha inicio</label>
+                                    <input id="edit_fecha_inicio" class="form-control" type="date" name="edit_fecha_inicio">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Fecha fin</label>
+                                    <input id="edit_fecha_fin" class="form-control" type="date" name="edit_fecha_fin">
+                                </div>
                             </form>
                         </div>
 
@@ -86,6 +107,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Periodo</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -102,6 +125,8 @@
         e.preventDefault();
 
         var ins_periodo = $("[name=ins_periodo]").val();
+        var ins_fecha_inicio = $("[name=ins_fecha_inicio]").val();
+        var ins_fecha_fin = $("[name=ins_fecha_fin]").val();
 
         $.ajax({
             url: "<?php echo base_url(); ?>agregarPeriodo",
@@ -109,6 +134,8 @@
             dataType: "json",
             data: {
                 ins_periodo: ins_periodo,
+                ins_fecha_inicio: ins_fecha_inicio,
+                ins_fecha_fin: ins_fecha_fin
             },
             success: function(data) {
                 if (data.response == "success") {
@@ -161,6 +188,8 @@
                     tbody += "<tr>";
                     tbody += "<td>" + data[key]["IDPeriodo"] + "</td>";
                     tbody += "<td>" + data[key]["Periodo"] + "</td>";
+                    tbody += "<td>" + data[key]["Fecha_inicio"] + "</td>";
+                    tbody += "<td>" + data[key]["Fecha_fin"] + "</td>";
                     tbody += `<td>
                                     <a href="#" id="del" value="${data[key]["IDPeriodo"]}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
                                     <a href="#" id="edit" value="${data[key]["IDPeriodo"]}" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
@@ -252,6 +281,8 @@
                         $("#modal_edit").modal("show");
                         $("[name=edit_id]").val(data.post.IDPeriodo);
                         $("[name=edit_periodo]").val(data.post.Periodo);
+                        $("[name=edit_fecha_inicio]").val(data.post.Fecha_inicio);
+                        $("[name=edit_fecha_fin]").val(data.post.Fecha_fin);
                     } else {
                         Command: toastr["error"](data.message);
 
@@ -283,6 +314,8 @@
 
         var edit_id = $("[name=edit_id]").val();
         var edit_periodo = $("[name=edit_periodo]").val();
+        var edit_fecha_inicio = $("[name=edit_fecha_inicio]").val();
+        var edit_fecha_fin = $("[name=edit_fecha_fin]").val();
 
         $.ajax({
             url: "<?php echo base_url(); ?>actualizarPeriodo",
@@ -291,6 +324,8 @@
             data: {
                 edit_id: edit_id,
                 edit_periodo: edit_periodo,
+                edit_fecha_inicio: edit_fecha_inicio,
+                edit_fecha_fin: edit_fecha_fin
 
             },
             success: function(data) {

@@ -16,6 +16,8 @@
                 Agregar
             </button>
 
+            <a class="btn btn-outline-success" href="<?= site_url('MaestrosSeccionesController/report_maestros') ?>"> Reporte en PDF</a>
+
             <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

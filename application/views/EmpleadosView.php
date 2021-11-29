@@ -224,7 +224,7 @@
               <th>Apellidos</th>
               <th>Fecha de nacimiento</th>
               <th>Sexo</th>
-              <th>Telfono</th>
+              <th>Teléfono</th>
               <th>DUI</th>
               <th>NIT</th>
               <th>Título</th>
